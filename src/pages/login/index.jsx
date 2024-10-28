@@ -33,6 +33,7 @@ const Login = () => {
   const handleLogin = () => {
     const apiKey = import.meta.env.VITE_API_KEY;
     console.log("API Key:", apiKey);
+    
     // API call to login
     axios
       .post("https://photo-sharing-api-bootcamp.do.dibimbing.id/api/v1/login", formLogin,
@@ -44,10 +45,26 @@ const Login = () => {
         }
       )
       .then((res) => {
-        console.log(res)})
+        console.log(res)
+        const userId = res.data.user.id
+        const name = res.data.user.name
+        const photo = res.data.user.profilePictureUrl
+        const id = res.data.token
+        const username = res.data.user.username
+        const bio = res.data.user.bio
+        const website = res.data.user.website
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("name", name)
+        localStorage.setItem("photo", photo)
+        localStorage.setItem("token", id)
+        localStorage.setItem("username", username)
+        localStorage.setItem("bio", bio)
+        localStorage.setItem("website", website)
         navigate("/dashboard")
-
+      
+      })
   }
+
   return (
     <>
       <div className="p-3">
@@ -102,8 +119,10 @@ const Login = () => {
           </button>
           <div className="text-center">
             <p>
-              Don’t have account? Let’s{" "}
-              <span className="text-green-500">Sign Up</span>{" "}
+              Don’t have account? Let’s{" "} 
+              <Link to={"/register"}>
+              <span className="text-green-500">Sign Up</span>
+              </Link>
             </p>
           </div>
         </div>
