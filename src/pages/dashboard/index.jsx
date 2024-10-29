@@ -62,7 +62,7 @@ const Dashboard = () => {
 
   return (
     <>
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col">
       <div className="p-3">
         <div className="flex items-center gap-2 mb-3">
           <h1 className="text-[20px]">UbayPix</h1>
@@ -120,12 +120,6 @@ const Dashboard = () => {
         </div>
         
       </div>
-
-      <div className="mt-auto">
-      <Footer/>
-
-      </div>
-
     </div>
     </>
   );

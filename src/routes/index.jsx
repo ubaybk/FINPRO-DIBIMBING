@@ -1,3 +1,4 @@
+import DetailUser from "../pages/detailUser";
 import Dashboard from "../pages/dashboard";
 import FollowingPost from "../pages/followingPost";
 import Home from "../pages/home";
@@ -25,6 +26,10 @@ export const routes = [
     {
         path: '/followingpost',
         element: <FollowingPost/>
+    },
+    {
+        path: '/detailuser/:userId',
+        element: <DetailUser/>
     },
 
 ]

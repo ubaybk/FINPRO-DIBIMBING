@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 
 const FollowingPost = () => {
   const [followingPost, setFollowingPost] = useState([]);
@@ -50,9 +52,11 @@ const FollowingPost = () => {
                 />
               </div>
               <div></div>
-              <div>
-                <h1>{item.user.username}</h1>
-              </div>
+              <Link to={`/detailuser/${item.userId}`}>
+              <button>
+                {item.user.username}
+              </button>
+              </Link>
             </div>
             <img src={item.imageUrl} alt="" />
             <div className="px-3">
