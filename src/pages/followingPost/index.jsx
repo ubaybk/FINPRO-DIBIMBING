@@ -4,7 +4,6 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-
 const FollowingPost = () => {
   const [followingPost, setFollowingPost] = useState([]);
 
@@ -40,9 +39,9 @@ const FollowingPost = () => {
 
   return (
     <>
-      <div>
+      <div className="pb-20">
         {followingPost.map((item, index) => (
-          <div key={index}>
+          <div key={index} className="">
             <div className="flex items-center gap-3 p-3">
               <div className="w-8 ">
                 <img
@@ -53,12 +52,10 @@ const FollowingPost = () => {
               </div>
               <div></div>
               <Link to={`/detailuser/${item.userId}`}>
-              <button>
-                {item.user.username}
-              </button>
+                <button>{item.user.username}</button>
               </Link>
             </div>
-            <img src={item.imageUrl} alt="" />
+            <img src={item.imageUrl} className="" alt="" />
             <div className="px-3">
               <div className="text-2xl flex items-center gap-12">
                 <div className="flex items-center gap-3">
@@ -70,14 +67,12 @@ const FollowingPost = () => {
                 </div>
               </div>
               <div className="flex gap-2">
-              <h1 className="font-semibold">{item.user.username}</h1>
-              <h1>{item.caption}</h1>
-
+                <h1 className="font-semibold">{item.user.username}</h1>
+                <h1>{item.caption}</h1>
               </div>
             </div>
           </div>
         ))}
-        <div></div>
       </div>
     </>
   );
