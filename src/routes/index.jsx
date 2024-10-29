@@ -1,7 +1,8 @@
 import Dashboard from "../pages/dashboard";
+import FollowingPost from "../pages/followingPost";
 import Home from "../pages/home";
 import Login from "../pages/login";
-import Register from "../register";
+import Register from "../pages/register";
 
 
 export const routes = [
@@ -20,6 +21,10 @@ export const routes = [
     {
         path: '/register',
         element: <Register/>
+    },
+    {
+        path: '/followingpost',
+        element: <FollowingPost/>
     },
 
 ]

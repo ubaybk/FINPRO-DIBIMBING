@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ButtonBack from "../components/buttonback";
+import ButtonBack from "../../components/buttonback";
 import { useRef, useState } from "react";
 
 const Register = () => {

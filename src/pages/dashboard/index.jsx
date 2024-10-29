@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";
+import Footer from "../../components/footer";
 
 
 const Dashboard = () => {
@@ -12,7 +13,11 @@ const Dashboard = () => {
   const userId = localStorage.getItem("userId")
   const token = localStorage.getItem("token")
   const apiKey = import.meta.env.VITE_API_KEY;
+
   const [post, setPost] = useState([])
+  const [totalPost, setTotalPost] = useState([])
+
+  const [dataUser, setDataUser] = useState([]) 
 
   const getPost = () => {
     axios
@@ -25,17 +30,39 @@ const Dashboard = () => {
         }
       }
     )
-    .then((res) => {setPost(res.data.data.posts)})
+    .then((res) => {
+      setPost(res.data.data.posts)
+      setTotalPost(res.data.data)
+
+    })
     .catch((err)=> console.log(err))
   }
+
+  const getUserById = () => {
+    axios
+      .get(`https://photo-sharing-api-bootcamp.do.dibimbing.id/api/v1/user/${userId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          "apiKey": apiKey,
+          "Authorization": `Bearer ${token}`
+          }
+      }
+    )
+    .then((res) => {setDataUser(res.data.data)})
+  }
   console.log('ini post',post)
+  console.log('ini total',totalPost)
+  console.log('ini user', dataUser)
 
   useEffect(()=>{
     getPost()
+    getUserById()
   },[])
 
   return (
     <>
+    <div className="min-h-screen flex flex-col">
       <div className="p-3">
         <div className="flex items-center gap-2 mb-3">
           <h1 className="text-[20px]">UbayPix</h1>
@@ -49,22 +76,22 @@ const Dashboard = () => {
               </div>
               <div className="flex gap-5">
                 <div>
-                  <h1>453</h1>
+                  <h1>{totalPost.totalItems}</h1>
                   <p>postingan</p>
                 </div>
                 <div>
-                  <h1>889</h1>
+                  <h1>{dataUser.totalFollowers}</h1>
                   <p>pengikut</p>
                 </div>
                 <div>
-                  <h1>759</h1>
+                  <h1>{dataUser.totalFollowing}</h1>
                   <p>mengikuti</p>
                 </div>
               </div>
             </div>
             <div className="">
               <h1>{name}</h1>
-              <p className="text-gray-400">{username}</p>
+              <p className="text-gray-400">@{username}</p>
               <p>{bio}</p>
 
               <p>
@@ -91,10 +118,15 @@ const Dashboard = () => {
           </div>
         ))}
         </div>
-        <div className="grid grid-cols-3">
         
-        </div>
       </div>
+
+      <div className="mt-auto">
+      <Footer/>
+
+      </div>
+
+    </div>
     </>
   );
 };
