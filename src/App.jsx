@@ -8,7 +8,7 @@ function App() {
   const location = useLocation()
 
   // Tentukan path mana saja yang ingin menampilkan footer
-  const showFooterPaths = [ "/dashboard", "/followingpost", "/detailuser/:userId"] 
+  const showFooterPaths = [ "/dashboard", "/followingpost", "/detailuser/:userId", "/explorepost", "/myfollowing", "/myfollowers"] 
   const showFooter = showFooterPaths.some(path => 
     location.pathname.match(new RegExp(path.replace(':userId', '[^/]+')))
   )

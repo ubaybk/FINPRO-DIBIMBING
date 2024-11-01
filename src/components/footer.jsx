@@ -12,11 +12,13 @@ const Footer = () => {
         <Link to={'/followingpost'}>
           <IoHomeSharp />
         </Link>
+        <Link to={'/explorepost'}>
         <IoSearch />
+        </Link>
         <IoAddCircleOutline />
         <Link to={'/dashboard'}>
-          <div className="w-7">
-            <img className="border-2 border-white rounded-full" src={photoProfile} alt="" />
+          <div className="">
+            <img className="border-2 w-10 h-10 border-white rounded-full" src={photoProfile} alt="" />
           </div>
         </Link>
       </div>

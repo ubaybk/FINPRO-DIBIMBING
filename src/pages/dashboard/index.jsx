@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";
 import Footer from "../../components/footer";
+import { Link } from "react-router-dom";
+
 
 
 const Dashboard = () => {
@@ -72,21 +74,25 @@ const Dashboard = () => {
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between text-center">
               <div>
-                <img src={photo} className="w-[70px] rounded-full" alt="" />
+                <img src={photo} className="w-[70px] h-[70px] rounded-full" alt="" />
               </div>
               <div className="flex gap-5">
                 <div>
                   <h1>{totalPost.totalItems}</h1>
                   <p>postingan</p>
                 </div>
+                <Link to={'/myfollowers'}>
                 <div>
                   <h1>{dataUser.totalFollowers}</h1>
                   <p>pengikut</p>
                 </div>
+                </Link>
+                <Link to={'/myfollowing'}>
                 <div>
                   <h1>{dataUser.totalFollowing}</h1>
                   <p>mengikuti</p>
                 </div>
+                </Link>
               </div>
             </div>
             <div className="">

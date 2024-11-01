@@ -3,12 +3,24 @@ import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Comment from "../../components/comment";
+import useTime from "../../hooks/useTime";
 
 const FollowingPost = () => {
+  const timeAgo = useTime()
+
   const [followingPost, setFollowingPost] = useState([]);
+
+  const [showComment, setShowComment] = useState(false)
+
 
   const apiKey = import.meta.env.VITE_API_KEY;
   const token = localStorage.getItem("token");
+
+  const handleShowComment = () =>{
+    setShowComment(!showComment)
+
+  }
 
   const getFollowingPost = () => {
     axios
@@ -31,12 +43,15 @@ const FollowingPost = () => {
       });
   };
 
+
   console.log(followingPost);
+
 
   useEffect(() => {
     getFollowingPost();
   }, []);
 
+  
   return (
     <>
       <div className="pb-20">
@@ -70,7 +85,15 @@ const FollowingPost = () => {
                 <h1 className="font-semibold">{item.user.username}</h1>
                 <h1>{item.caption}</h1>
               </div>
+              {showComment && <button onClick={handleShowComment} className="text-[12px] text-gray-500">Lihat semua komentar</button>}
+             
+              <p className="text-[10px] text-gray-500">
+                {" "}
+                {timeAgo(item.createdAt)}
+              </p>
             </div>
+            <Comment postId={item.id} />
+            {console.log('ini id',item.id)}
           </div>
         ))}
       </div>
