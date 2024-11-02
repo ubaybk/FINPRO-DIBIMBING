@@ -15,6 +15,7 @@ const DetailUser = () => {
   const [detailUser, setDetailUser] = useState([]);
   const [totalPost, setTotalPost] = useState([])
   const [postUser, setPostUser] = useState([])
+  const [logOut, setLogOut] = useState(false)
   const [followUser, setfollowUser] = useState("ikuti")
 
   console.log(`ini follow, ${followUser}`)
@@ -61,6 +62,13 @@ console.log(`ini total post`, totalPost)
 console.log(`ini post user`, postUser)
 
 console.log(detailUser)
+
+const handleLogOut = () => {
+  setLogOut(!logOut)
+  
+}
+console.log('handle log out')
+
 useEffect(()=>{
     getDetailUser()
     getPostUser()
@@ -74,7 +82,13 @@ return (
             <ButtonBack/>
             </Link>
           <h1 className="text-[20px]">UbayPix</h1>
-          <FaAngleDown className="text-green-500" />
+          
+          <FaAngleDown onClick={handleLogOut} className="text-green-500" />
+
+         
+          <div>
+            {logOut && <h1 className="text-red-500 mt-2">Logout</h1>}
+          </div>
         </div>
         <div>
           <div className="flex flex-col gap-2">

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";
 import Footer from "../../components/footer";
 import { Link } from "react-router-dom";
+import Logout from "../../components/logout";
+
 
 
 
@@ -20,6 +22,12 @@ const Dashboard = () => {
   const [totalPost, setTotalPost] = useState([])
 
   const [dataUser, setDataUser] = useState([]) 
+
+  const [logOut, setLogOut] = useState (false)
+
+  const handleLogout = () => {
+    setLogOut(!logOut)
+  }
 
   const getPost = () => {
     axios
@@ -68,7 +76,8 @@ const Dashboard = () => {
       <div className="p-3">
         <div className="flex items-center gap-2 mb-3">
           <h1 className="text-[20px]">UbayPix</h1>
-          <FaAngleDown className="text-green-500" />
+          <FaAngleDown onClick={handleLogout} className="text-green-500" />
+          {logOut && <Logout/>}
         </div>
         <div>
           <div className="flex flex-col gap-2">

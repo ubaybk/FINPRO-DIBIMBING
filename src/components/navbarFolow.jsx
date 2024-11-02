@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import ButtonBack from "./buttonback";
 import { followingContext } from "../context/FollowingContextProvider";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 const NavbarFollow = () => {
   const username = localStorage.getItem("username");
   const dataMyFollowing = useContext(followingContext);
 
   console.log("ini total following", dataMyFollowing);
+
+ 
 
   return (
     <>

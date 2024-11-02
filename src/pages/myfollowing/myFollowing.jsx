@@ -35,7 +35,7 @@ const MyFollowing = () => {
     // console.log('ini data my following',dataMyfollowing)
 
     // useEffect(()=> {
-    //     getMyfollowing()
+    //     NavbarFollow
     // },[])
 
 
