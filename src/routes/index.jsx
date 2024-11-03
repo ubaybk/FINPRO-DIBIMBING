@@ -8,6 +8,9 @@ import ExplorePost from "../pages/explorePost";
 import ProtectedRoute from "./protectedRoute";
 import MyFollowing from "../pages/myfollowing/myFollowing";
 import MyFollowers from "../pages/myFollowers";
+import PostCreate from "../pages/postCreate";
+import FollowingUserId from "../pages/followingUserId";
+import { FollowingByUserIdContextProvider } from "../context/FollowingByUserIdContextProvider";
 
 
 export const routes = [
@@ -68,6 +71,24 @@ export const routes = [
     element: (
         <ProtectedRoute>
             <MyFollowers/>
+        </ProtectedRoute>
+    )
+  },
+  {
+    path: "/postcreate",
+    element: (
+        <ProtectedRoute>
+            <PostCreate/>
+        </ProtectedRoute>
+    )
+  },
+  {
+    path: "/followinguserid/:userId",
+    element: (
+        <ProtectedRoute>
+          <FollowingByUserIdContextProvider>
+            <FollowingUserId/>
+          </FollowingByUserIdContextProvider>
         </ProtectedRoute>
     )
   },

@@ -54,12 +54,10 @@ const getPostUser = () => {
     })
 }
 
-const follow = () => {
-  axios
-  .post(`https://photo-sharing-api-bootcamp.do.dibimbing.id/api/v1/follow`)
-}
+
 console.log(`ini total post`, totalPost)
 console.log(`ini post user`, postUser)
+console.log('lempar userID', userId )
 
 console.log(detailUser)
 
@@ -105,10 +103,12 @@ return (
                   <h1>{detailUser.totalFollowers}</h1>
                   <p>pengikut</p>
                 </div>
+                <Link to={`/followinguserid/${userId}`}>
                 <div>
                   <h1>{detailUser.totalFollowing}</h1>
                   <p>mengikuti</p>
                 </div>
+                </Link>
               </div>
             </div>
             <div className="">

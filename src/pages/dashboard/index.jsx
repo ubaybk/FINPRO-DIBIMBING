@@ -124,10 +124,10 @@ const Dashboard = () => {
         </div>
       </div>
       <div>
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-3 mb-36">
         {post.map((item, index) => (
-          <div key={index}>
-            <img src={item.imageUrl} alt="" />
+          <div key={index} className="flex flex-col items-center">
+            <img src={item.imageUrl} className="w-30 h-20" alt="" />
             <h1>{item.caption}</h1>
            
           </div>

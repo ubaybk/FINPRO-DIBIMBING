@@ -1,9 +1,17 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate()
+  const token = localStorage.getItem('token')
+  useEffect(()=> {
+    if (token){
+      navigate('/dashboard')
+    }
+  },[])
   return (
     <>
-      <div className="h-screen">
+      <div className="">
         <img className="w-full" src="./img/herosection.png" alt="" />
         <div className="text-center px-4 flex flex-col gap-5">
           <h1 className="font-medium text-[43px] ">
