@@ -1,13 +1,15 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useTime from "../hooks/useTime";
 import { FaAngleDoubleUp } from "react-icons/fa";
 
-const Comment = ({ postId }) => {
+const Comment = ({ postId, onCommentData  }) => {
     const timeAgo = useTime()
   const [comments, setComments] = useState([]);
   const apiKey = import.meta.env.VITE_API_KEY;
   const token = localStorage.getItem("token");
+
+  
 
   const photoProfile = localStorage.getItem("photo");
   const username = localStorage.getItem("username");
@@ -26,6 +28,9 @@ const Comment = ({ postId }) => {
       )
       .then((res) => {
         setComments(res.data.data.comments || []);
+        if (onCommentData) {
+          onCommentData(res.data.data.comments);
+        }
         
       })
       .catch((err) => console.log(err));

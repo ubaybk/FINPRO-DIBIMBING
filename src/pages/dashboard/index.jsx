@@ -8,6 +8,7 @@ import Logout from "../../components/logout";
 
 
 
+
 const Dashboard = () => {
   const name = localStorage.getItem("name");
   const photo = localStorage.getItem("photo");
@@ -31,7 +32,7 @@ const Dashboard = () => {
 
   const getPost = () => {
     axios
-    .get(`https://photo-sharing-api-bootcamp.do.dibimbing.id/api/v1/users-post/${userId}?size=10&page=1`, 
+    .get(`https://photo-sharing-api-bootcamp.do.dibimbing.id/api/v1/users-post/${userId}?size=100&page=1`, 
       {
         headers: {
           "Content-Type": "application/json",
@@ -75,6 +76,7 @@ const Dashboard = () => {
     <div className="flex flex-col">
       <div className="p-3">
         <div className="flex items-center gap-2 mb-3">
+         
           <h1 className="text-[20px]">UbayPix</h1>
           <FaAngleDown onClick={handleLogout} className="text-green-500" />
           {logOut && <Logout/>}
@@ -127,7 +129,7 @@ const Dashboard = () => {
         <div className="grid grid-cols-3 mb-36">
         {post.map((item, index) => (
           <div key={index} className="flex flex-col items-center">
-            <img src={item.imageUrl} className="w-30 h-20" alt="" />
+            <img src={item.imageUrl} className="w-60 h-60" alt="" />
             <h1>{item.caption}</h1>
            
           </div>

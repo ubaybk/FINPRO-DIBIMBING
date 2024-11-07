@@ -18,7 +18,8 @@ function App() {
     "/myfollowing",
     "/myfollowers",
     "/postcreate",
-    "/followinguserid"
+    "/followinguserid",
+    "/followersuserid"
   ];
   const showFooter = showFooterPaths.some(path =>
     location.pathname.match(new RegExp(path.replace(':userId', '[^/]+')))
@@ -26,7 +27,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
-      <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      {/* <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} /> */}
       <div className="flex-grow">{element}</div>
       {showFooter && <Footer />}
     </div>

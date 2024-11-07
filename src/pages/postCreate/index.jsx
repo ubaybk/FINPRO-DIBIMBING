@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { IoMdClose } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
+import { GrGallery } from "react-icons/gr";
 
 const PostCreate = () => {
+  const navigate = useNavigate()
   const [file, setFile] = useState(null);
   const [sendImage, setSendImage] = useState([]);
   const [preview, setPreview] = useState(null);
@@ -64,7 +68,8 @@ const PostCreate = () => {
             apiKey: apiKey,
           },
         }
-      );
+      )
+      navigate("/dashboard");
 
       console.log("Post created successfully:", postResponse.data);
     } catch (error) {
@@ -81,25 +86,44 @@ const PostCreate = () => {
 
   return (
     <>
-      <div>
-        <h1>POST CREATE</h1>
-        <div>
-          <input onChange={handleChange} type="file" />
-          {preview && (
-            <div>
-              <p>Preview :</p>
-              <img src={preview} alt="Preview" className="w-max" />
-            </div>
-          )}
+      <div className="flex flex-col gap-3 p-3 h-screen mb-56">
+        <div className="flex items-center gap-5 mb-5">
+          <Link to={"/"}>
+            <IoMdClose />
+          </Link>
+          <h1>Postingan Baru</h1>
         </div>
+        {preview && (
+          <div className="flex flex-col items-center">
+            <img src={preview} alt="Preview" className="w-[300px] h-[300px]" />
+          </div>
+        )}
+        <div>
+          <input
+            id="fileInput"
+            onChange={handleChange}
+            type="file"
+            className="hidden"
+          />
+          <label htmlFor="fileInput">
+            <div className="flex items-center cursor-pointer justify-center gap-5 text-[25px] bg-green-400 px-5 text-white py-3 rounded-3xl">
+              <GrGallery className="" />
+              <p>Pilih Image</p>
+            </div>
+          </label>
+        </div>
+        <input
+          onChange={handleChangePostCreate}
+          type="text"
+          name="caption"
+          placeholder="caption"
+          className="border-green-500 border-2 text-green-600 text-center py-2"
+        />
+
+        <button onClick={handleCombinedUpload}>
+          Upload & Send
+        </button>
       </div>
-      <input
-        onChange={handleChangePostCreate}
-        type="text"
-        name="caption"
-        placeholder="caption"
-      />
-      <button onClick={handleCombinedUpload}>Upload & Send</button>
     </>
   );
 };
